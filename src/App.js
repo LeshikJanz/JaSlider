@@ -4,6 +4,10 @@ import './App.css';
 import Slider from "./Slider/Slider"
 
 class App extends Component {
+  slideNext = () => {
+
+  }
+
   render () {
     return (
       <div className="App">

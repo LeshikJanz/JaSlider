@@ -1,5 +1,5 @@
 // @flow
-import React from "react"
+import React, { Fragment } from "react"
 
 function withMouseHandlers (Component: any) {
   return class Slider extends React.Component<{}> {
@@ -17,13 +17,15 @@ function withMouseHandlers (Component: any) {
     }
 
     componentDidMount () {
-      document.addEventListener("mouseup", this.onMouseUp, false)
       document.addEventListener("mousemove", this.onMouseMove, false)
+      this.transformedX = 0
+      this.setUpSlider()
+    }
+
+    setUpSlider = () => {
       if (this.ref) {
         this.slides = this.ref.querySelectorAll(".slide")
         this.mainSlider = this.ref.querySelector(".main-slider")
-        console.log("this.slides")
-        console.log(this.slides)
         if (this.slides && this.slides.length) {
           this.setState({
             slideHeight: this.slides[0].offsetHeight,
@@ -50,7 +52,7 @@ function withMouseHandlers (Component: any) {
       this.isMouseDown = true
     }
 
-    onMouseUp = () => {
+    onMouseUp = (e) => {
       this.transformedX = this.deltaX
       this.isMouseDown = false
       this.alignItems()
@@ -69,17 +71,40 @@ function withMouseHandlers (Component: any) {
     disableTransition = () =>
       this.ref.style.transition = "none"
 
+    slideNext = (count: number = 1) => {
+      this.enableTransition()
+      const nextPosition = this.transformedX - this.state.slideWidth * count
+      this.moveSlider(nextPosition)
+      this.transformedX = nextPosition
+    }
+
+    slidePrev = (count: number = 1) => {
+      this.enableTransition()
+      const prevPosition = this.transformedX + this.state.slideWidth * count
+      this.moveSlider(prevPosition)
+      this.transformedX = prevPosition
+    }
+
     render () {
       return (
-        <div
-          ref={ref => {
-            this.ref = ref
-          }}
-          className="main-slider"
-          onMouseDown={this.onMouseDown}
-        >
-          <Component {...this.props} />
-        </div>
+        <Fragment>
+          <button onClick={() => this.slidePrev(1)}>Prev</button>
+          <div
+            ref={ref => {
+              this.ref = ref
+            }}
+            className="main-slider"
+            onMouseDown={this.onMouseDown}
+            onMouseUp={this.onMouseUp}
+          >
+            <Component
+              {...this.props}
+              slideNext={this.slideNext}
+              slidePrev={this.slidePrev}
+            />
+          </div>
+          <button onClick={() => this.slideNext(1)}>Next</button>
+        </Fragment>
       )
     }
   }
