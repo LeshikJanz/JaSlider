@@ -10,14 +10,11 @@ class Slider extends React.Component<{}> {
   sliderRef: HTMLDivElement
 
   componentDidMount () {
-    this.sliderRef.addEventListener("dragstart", function (e) {
-      const img = document.createElement("img");
-      img.style.opacity = 0;
-      e.dataTransfer.setDragImage(img, 0, 0);
-    })
+    document.addEventListener("mouseup", this.onMouseUp, false)
+    document.addEventListener("mousemove", this.onMouseMove, false)
   }
 
-  onDrag = (e) => {
+  onMouseMove = (e) => {
     if (e.screenX !== 0 && this.isMouseDown) {
       this.deltaX = e.screenX - this.initialPositionX + this.transformedX
       this.sliderRef.style.transform = `translate(${this.deltaX}px, 0)`
@@ -29,21 +26,10 @@ class Slider extends React.Component<{}> {
     this.isMouseDown = true
   }
 
-  onMouseUp = ({ screenX }) => {
+  onMouseUp = () => {
     this.transformedX = this.deltaX
     this.isMouseDown = false
   }
-
-  checkIfMouseOutOfScreen = ({ screenX, screenY }) => {
-    if (window.innerWidth > screenX) {
-
-    }
-  }
-
-  onMouseLeave = () => {
-    console.log("onMouseOut")
-  }
-
 
   render () {
     return (
@@ -54,9 +40,6 @@ class Slider extends React.Component<{}> {
           }}
           className="center-block"
           onMouseDown={this.onMouseDown}
-          onMouseUp={this.onMouseUp}
-          onMouseMove={this.onDrag}
-          onMouseLeave={this.onMouseLeave}
         >
           <img draggable={false} src="https://picsum.photos/200/300?image=100" alt="" />
           <img draggable={false} src="https://picsum.photos/200/300?image=101" alt="" />
