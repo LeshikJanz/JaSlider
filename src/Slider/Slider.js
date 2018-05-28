@@ -1,28 +1,24 @@
 // @flow
-import React, { Fragment } from "react"
+import React from "react"
 import "./styles.css"
+import { compose } from "redux"
 import withMouseHandlers from "./withMouseHandlers"
+import withAligning from "./withAligning"
 
-class Slider extends React.Component<{}> {
+type Props = {
+  children: HTMLDivElement[],
+}
+
+class Slider extends React.Component<Props> {
   render () {
     return (
-      <Fragment>
-        <div className="slide">
-          <img draggable={false} src="https://picsum.photos/200/300?image=100" alt="" />
-        </div>
-        <div className="slide">
-          <img draggable={false} src="https://picsum.photos/200/300?image=101" alt="" />
-        </div>
-        <div className="slide">
-          <img draggable={false} src="https://picsum.photos/200/300?image=102" alt="" />
-        </div>
-        {/*<img src="https://picsum.photos/200/300?image=103" alt="" />*/}
-        {/*<img src="https://picsum.photos/200/300?image=104" alt="" />*/}
-        {/*<img src="https://picsum.photos/200/300?image=105" alt="" />*/}
-        {/*<img src="https://picsum.photos/200/300?image=106" alt="" />*/}
-      </Fragment>
+      <div className="slider-container">
+        {this.props.children}
+      </div>
     )
   }
 }
 
-export default withMouseHandlers(Slider)
+export default compose(
+  withMouseHandlers,
+)(Slider)

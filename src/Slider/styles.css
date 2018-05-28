@@ -1,9 +1,11 @@
-.main-slider {
+.slider-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.wrapper {
   height: 100%;
   width: 100%;
   background-color: yellow;
-}
-
-.center-block {
-  display: flex;
 }
