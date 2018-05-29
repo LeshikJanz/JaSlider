@@ -1,9 +1,8 @@
 // @flow
-import React from "react"
+import React, { Fragment } from "react"
 import "./styles.css"
 import { compose } from "redux"
 import withMouseHandlers from "./withMouseHandlers"
-import withAligning from "./withAligning"
 
 type Props = {
   children: HTMLDivElement[],
@@ -11,10 +10,11 @@ type Props = {
 
 class Slider extends React.Component<Props> {
   render () {
+    const { slides } = this.props
     return (
-      <div className="slider-container">
-        {this.props.children}
-      </div>
+      <Fragment>
+        {slides && slides.map((slide, index) => <div key={index}>{slide}</div>)}
+      </Fragment>
     )
   }
 }
