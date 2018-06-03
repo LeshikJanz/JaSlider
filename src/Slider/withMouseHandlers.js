@@ -3,8 +3,9 @@ import React, { Fragment } from "react"
 import ReactDOM from "react-dom"
 
 const SLIDES_PER_VIEW = 4
+const MIN_SHADOW_SLIDES = 2 * SLIDES_PER_VIEW
 
-function withMouseHandlers (Component: any) {
+function withMouseHandlers(Component: any) {
   return class Slider extends React.Component<{}> {
     initialPositionX: number
     transformedX: number = 0
@@ -13,31 +14,35 @@ function withMouseHandlers (Component: any) {
     wrapperRef: HTMLDivElement
     swipedAreaRef: HTMLDivElement
     slides: HTMLDivElement[]
+    currentSlideIndex: number
 
     state = {
       slideHeight: 0,
       slideWidth: 0,
       slidesPerView: SLIDES_PER_VIEW,
       renderedSlides: [],
+      lastRenderedSlideIndex: 0,
+      firstRenderedSlideIndex: 0,
     }
 
-    componentDidMount () {
+    componentDidMount() {
       document.addEventListener("mouseup", this.onMouseUp, false)
       document.addEventListener("mousemove", this.onMouseMove, false)
       window.addEventListener('resize', this.onResize)
       this.transformedX = 0
       this.setUpSlider()
+      setInterval(() => {
+        this.showData()
+      }, 3000)
     }
 
-    componentDidUpdate () {
+    componentDidUpdate() {
       if (!this.state.slideHeight && !this.state.slideWidth) {
         this.setSlideDimensions()
       }
     }
 
     onResize = () => {
-      console.log("this.wrapperRef.offsetWidth")
-      console.log(this.wrapperRef.offsetWidth)
       this.swipedAreaRef.style.width = "800px"
     }
 
@@ -46,7 +51,7 @@ function withMouseHandlers (Component: any) {
         this.slides = React.Children.map(this.props.children, (child, index) =>
           React.cloneElement(child, {}))
         if (this.slides && this.slides.length) {
-          this.setState({ renderedSlides: this.slides })
+          this.setState({ renderedSlides: this.slides, lastRenderedSlideIndex: this.slides.length })
         }
       }
     }
@@ -71,9 +76,16 @@ function withMouseHandlers (Component: any) {
       }
     }
 
+    setSlideIndex = (deltaX: number = 0) => {
+      if (deltaX % this.state.slideWidth === 0) {
+        this.currentSlideIndex = -(deltaX / this.state.slideWidth)
+      }
+    }
+
     moveSlider = (deltaX: number) => {
       this.deltaX = deltaX
       this.swipedAreaRef.style.transform = `translate(${deltaX}px, 0)`
+      this.setSlideIndex(deltaX)
     }
 
     onMouseDown = (e) => {
@@ -93,6 +105,7 @@ function withMouseHandlers (Component: any) {
       const swipedSlidesCount = (this.deltaX / this.state.slideWidth).toFixed()
       this.moveSlider(swipedSlidesCount * this.state.slideWidth)
       this.transformedX = this.deltaX
+      setTimeout(this.checkForNewSlides, 1000)
     }
 
     enableTransition = () =>
@@ -115,6 +128,24 @@ function withMouseHandlers (Component: any) {
       this.transformedX = prevPosition
     }
 
+    slideTo = (slideIndex: number) => {
+      this.enableTransition()
+      const nextPosition = -(this.state.slideWidth * slideIndex)
+      this.moveSlider(nextPosition)
+      this.transformedX = nextPosition
+    }
+
+    checkForNewSlides = () => {
+      if (this.state.lastRenderedSlideIndex - this.currentSlideIndex - this.state.slidesPerView <= MIN_SHADOW_SLIDES) {
+        console.log("renderNextSlides")
+        const nextSlides = this.getNextAdditionalSlides(MIN_SHADOW_SLIDES)
+        this.setState(prevState => ({
+          renderedSlides: [...prevState.renderedSlides, ...nextSlides],
+          lastRenderedSlideIndex: prevState.lastRenderedSlideIndex + nextSlides.length
+        }))
+      }
+    }
+
     getPrevAdditionalSlides = (currentIndex: number, count: number = SLIDES_PER_VIEW) => {
       const additionalSlides = []
       for (let i = 1; i <= count; i++) {
@@ -127,12 +158,15 @@ function withMouseHandlers (Component: any) {
       return additionalSlides
     }
 
-    getNextAdditionalSlides = (currentIndex: number, count: number = SLIDES_PER_VIEW) => {
+    getNextAdditionalSlides = (count: number = SLIDES_PER_VIEW) => {
       const additionalSlides = []
-      const slides = this.slides
+      const slides = new Array(...this.slides)
+      const renderedSlides = new Array(...this.state.renderedSlides)
+      const lastSlide = renderedSlides.pop()
+      const initialSlidesFoundedIndex = this.slides.indexOf(lastSlide)
       for (let i = 1; i <= count; i++) {
-        if (this.slides[currentIndex + i]) {
-          additionalSlides.push(slides[currentIndex + i])
+        if (this.slides[initialSlidesFoundedIndex + i]) {
+          additionalSlides.push(slides[initialSlidesFoundedIndex + i])
         } else {
           additionalSlides.push(slides.shift())
         }
@@ -140,7 +174,10 @@ function withMouseHandlers (Component: any) {
       return additionalSlides
     }
 
-    render () {
+    showData = () => {
+    }
+
+    render() {
       return (
         <Fragment>
           <button onClick={() => this.slidePrev(SLIDES_PER_VIEW)}>Prev</button>
@@ -167,6 +204,7 @@ function withMouseHandlers (Component: any) {
             </div>
           </div>
           <button onClick={() => this.slideNext(SLIDES_PER_VIEW)}>Next</button>
+          <button onClick={() => this.slideTo(2)}>Slide to the second</button>
         </Fragment>
       )
     }
