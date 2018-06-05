@@ -1,6 +1,6 @@
 // @flow
 import React, { Fragment } from "react"
-import { getPrevAdditionalSlides } from "./utils";
+import { getSlideBySlidesOffset, getNextAdditionalSlides } from "./utils";
 
 type Props = {
   firstViewSlide: HTMLDivElement,
@@ -17,12 +17,9 @@ class PrevRenderedSlides extends React.Component<Props, State> {
     prevSlides: [],
   }
 
-  componentWillReceiveProps() {
-    console.log("this.props.firstViewSlide")
-    console.log(this.props.firstViewSlide)
-    const prevSlides = getPrevAdditionalSlides(this.props.firstViewSlide, this.props.slidesPerView, this.props.slides)
-    console.log("prevSlides")
-    console.log(prevSlides)
+  componentWillReceiveProps({ firstViewSlide, slidesPerView, slides }) {
+    const prevFirstSlide = getSlideBySlidesOffset(firstViewSlide, -slidesPerView - 1, slides)
+    const prevSlides = getNextAdditionalSlides(prevFirstSlide, slidesPerView, slides)
     this.setState({ prevSlides })
   }
 

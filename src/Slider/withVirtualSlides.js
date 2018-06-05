@@ -8,8 +8,6 @@ function withVirtualSlides (Component: any) {
 
     componentDidMount () {
       this.slides = this.props.children.querySelectorAll(".slide")
-      console.log("this.slides")
-      console.log(this.slides)
     }
 
     render () {

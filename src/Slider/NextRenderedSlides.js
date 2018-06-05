@@ -23,8 +23,6 @@ class NextRenderedSlides extends React.Component<Props, State> {
   }
 
   render() {
-    console.log("this.state.nextSlides")
-    console.log(this.state.nextSlides)
     return (<Fragment>{this.state.nextSlides}</Fragment>)
   }
 }
