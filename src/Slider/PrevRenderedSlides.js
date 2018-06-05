@@ -5,16 +5,30 @@ import { getPrevAdditionalSlides } from "./utils";
 type Props = {
   firstViewSlide: HTMLDivElement,
   slides: HTMLDivElement[],
+  slidesPerView: number,
 }
 
-function PrevRenderedSlides({ firstViewSlide, slides = [] }: Props) {
-  if (slides.length) {
-    console.log("slides")
-    console.log(slides)
-    console.log("getPrevAdditionalSlides(firstViewSlide, 4, slides)")
-    console.log(getPrevAdditionalSlides(firstViewSlide, 4, slides))
+type State = {
+  prevSlides: HTMLDivElement[],
+}
+
+class PrevRenderedSlides extends React.Component<Props, State> {
+  state = {
+    prevSlides: [],
   }
-  return (<Fragment>PrevRenderedSlides</Fragment>)
+
+  componentWillReceiveProps() {
+    console.log("this.props.firstViewSlide")
+    console.log(this.props.firstViewSlide)
+    const prevSlides = getPrevAdditionalSlides(this.props.firstViewSlide, this.props.slidesPerView, this.props.slides)
+    console.log("prevSlides")
+    console.log(prevSlides)
+    this.setState({ prevSlides })
+  }
+
+  render() {
+    return (<Fragment>{this.state.prevSlides}</Fragment>)
+  }
 }
 
 export default PrevRenderedSlides

@@ -5,10 +5,10 @@ export const getPrevAdditionalSlides = (currentSlide: HTMLDivElement, count: num
   const slidesCopy = new Array(...slides)
   const currentIndex = slidesCopy.indexOf(currentSlide)
   for (let i = 1; i <= count; i++) {
-    if (this.slides[currentIndex - i]) {
+    if (slidesCopy[currentIndex - i]) {
       additionalSlides.push(slidesCopy[currentIndex - i])
     } else {
-      additionalSlides.push(slidesCopy[this.slides.length - i + additionalSlides.length])
+      additionalSlides.push(slidesCopy[slidesCopy.length - i])
     }
   }
   return additionalSlides
@@ -26,4 +26,16 @@ export const getNextAdditionalSlides = (currentSlide: HTMLDivElement, count: num
     }
   }
   return additionalSlides
+}
+
+export const getSlideBySlidesOffset = (currentSlide: HTMLDivElement, offsetCount, slides) => {
+  const currentIndex = slides.indexOf(currentSlide)
+  const newSlideIndex = currentIndex + offsetCount
+  if (newSlideIndex < 0) {
+    return slides[slides.length + newSlideIndex]
+  }
+  if (newSlideIndex >= slides.length) {
+    return slides[newSlideIndex - slides.length]
+  }
+  return slides[newSlideIndex]
 }

@@ -5,6 +5,7 @@ import { getNextAdditionalSlides } from "./utils";
 type Props = {
   lastViewSlide: HTMLDivElement,
   slides: HTMLDivElement[],
+  slidesPerView: number,
 }
 
 type State = {
@@ -16,12 +17,14 @@ class NextRenderedSlides extends React.Component<Props, State> {
     nextSlides: [],
   }
 
-  componentWillReceiveProps() {
-    const nextSlides = getNextAdditionalSlides(this.props.lastViewSlide, 4, this.props.slides)
+  componentWillReceiveProps({ lastViewSlide, slidesPerView, slides }) {
+    const nextSlides = getNextAdditionalSlides(lastViewSlide, slidesPerView, slides)
     this.setState({ nextSlides })
   }
 
   render() {
+    console.log("this.state.nextSlides")
+    console.log(this.state.nextSlides)
     return (<Fragment>{this.state.nextSlides}</Fragment>)
   }
 }

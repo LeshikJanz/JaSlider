@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="4eff2ff4-64a8-4472-906c-33daf418d768" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Slider/NextRenderedSlides.js" afterPath="$PROJECT_DIR$/src/Slider/NextRenderedSlides.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Slider/PrevRenderedSlides.js" afterPath="$PROJECT_DIR$/src/Slider/PrevRenderedSlides.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Slider/utils.js" afterPath="$PROJECT_DIR$/src/Slider/utils.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Slider/withMouseHandlers.js" afterPath="$PROJECT_DIR$/src/Slider/withMouseHandlers.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -27,8 +30,8 @@
       <file leaf-file-name="utils.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Slider/utils.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="36" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="36" />
+            <state relative-caret-position="319">
+              <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -49,8 +52,8 @@
       <file leaf-file-name="withMouseHandlers.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Slider/withMouseHandlers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="169" column="13" selection-start-line="169" selection-start-column="13" selection-end-line="169" selection-end-column="13" />
+            <state relative-caret-position="172">
+              <caret line="137" column="33" selection-start-line="137" selection-start-column="33" selection-end-line="137" selection-end-column="33" />
               <folding>
                 <element signature="e#9#48#0" expanded="true" />
               </folding>
@@ -73,8 +76,20 @@
       <file leaf-file-name="NextRenderedSlides.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Slider/NextRenderedSlides.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="352">
-              <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
+            <state relative-caret-position="292">
+              <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+              <folding>
+                <element signature="e#9#48#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PrevRenderedSlides.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Slider/PrevRenderedSlides.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
               <folding>
                 <element signature="e#9#48#0" expanded="true" />
               </folding>
@@ -124,9 +139,9 @@
         <option value="$PROJECT_DIR$/src/Slider/withVirtualSlides.js" />
         <option value="$PROJECT_DIR$/src/Slider/styles.css" />
         <option value="$PROJECT_DIR$/src/Slider/Slider.js" />
-        <option value="$PROJECT_DIR$/src/Slider/utils.js" />
-        <option value="$PROJECT_DIR$/src/Slider/PrevRenderedSlides.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/Slider/PrevRenderedSlides.js" />
+        <option value="$PROJECT_DIR$/src/Slider/utils.js" />
         <option value="$PROJECT_DIR$/src/Slider/NextRenderedSlides.js" />
         <option value="$PROJECT_DIR$/src/Slider/withMouseHandlers.js" />
       </list>
@@ -335,12 +350,12 @@
       <workItem from="1527499693814" duration="15692000" />
       <workItem from="1527585951215" duration="11329000" />
       <workItem from="1528058300846" duration="3680000" />
-      <workItem from="1528188433948" duration="4990000" />
+      <workItem from="1528188433948" duration="8516000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41300000" />
+    <option name="totallyTimeSpent" value="44826000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -618,34 +633,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Slider/PrevRenderedSlides.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="15" selection-end-column="3" />
-          <folding>
-            <element signature="e#9#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Slider/utils.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="36" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Slider/NextRenderedSlides.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="44" />
-          <folding>
-            <element signature="e#9#48#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Slider/Slider.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -666,10 +653,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Slider/PrevRenderedSlides.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="26" selection-start-line="24" selection-start-column="26" selection-end-line="24" selection-end-column="26" />
+          <folding>
+            <element signature="e#9#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Slider/utils.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="28" column="1" selection-start-line="28" selection-start-column="1" selection-end-line="28" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Slider/NextRenderedSlides.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="20" column="26" selection-start-line="20" selection-start-column="26" selection-end-line="20" selection-end-column="26" />
+          <folding>
+            <element signature="e#9#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Slider/withMouseHandlers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="169" column="13" selection-start-line="169" selection-start-column="13" selection-end-line="169" selection-end-column="13" />
+        <state relative-caret-position="172">
+          <caret line="137" column="33" selection-start-line="137" selection-start-column="33" selection-end-line="137" selection-end-column="33" />
           <folding>
             <element signature="e#9#48#0" expanded="true" />
           </folding>
