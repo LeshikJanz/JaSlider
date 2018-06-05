@@ -102,7 +102,7 @@ class App extends Component {
               <img draggable={false} src="https://picsum.photos/200/300?image=137" alt="" />
             </div>
             <div className="slide">
-              <img draggable={false} src="https://picsum.photos/200/300?image=138" alt="" />
+              <img draggable={false} src="https://picsum.photos/200/300?image=188" alt="" />
             </div>
             <div className="slide">
               <img draggable={false} src="https://picsum.photos/200/300?image=139" alt="" />
