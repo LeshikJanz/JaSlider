@@ -39,7 +39,7 @@ class Slider extends React.Component<{}> {
 
   componentDidUpdate() {
     if (!this.state.slideWidth) {
-      this.setSlideDimensions()
+      this.setSlideWidth()
     }
   }
 
@@ -55,7 +55,7 @@ class Slider extends React.Component<{}> {
     }
   }
 
-  setSlideDimensions = () => {
+  setSlideWidth = () => {
     if (this.swipedAreaRef) {
       const container = document.createElement("div")
       ReactDOM.render(this.props.children, container)
@@ -67,7 +67,7 @@ class Slider extends React.Component<{}> {
 
   updateSlidesWrapperStyles = (slideWidth: number = this.state.slideWidth) => {
     this.wrapperRef.style.maxWidth = `${slideWidth * this.state.slidesPerView}px`
-    if (this.state.slidesPerView > DEFAULT_SLIDES_PER_VIEW) {
+    if (this.state.slidesPerView > MIN_SHADOW_SLIDES_COUNT) {
       this.swipedAreaRef.style.marginLeft = `${-this.state.slidesPerView * slideWidth}px`
     } else {
       this.swipedAreaRef.style.marginLeft = `${-MIN_SHADOW_SLIDES_COUNT * slideWidth}px`
