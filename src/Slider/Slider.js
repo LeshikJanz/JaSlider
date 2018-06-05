@@ -9,7 +9,7 @@ type Props = {
 }
 
 class Slider extends React.Component<Props> {
-  render () {
+  render() {
     const { slides } = this.props
     return (
       <Fragment>
