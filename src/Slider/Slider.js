@@ -13,7 +13,7 @@ class Slider extends React.Component<Props> {
     const { slides } = this.props
     return (
       <Fragment>
-        {slides && slides.map((slide, index) => <div key={index}>{slide}</div>)}
+        {slides && slides.map((slide, index) => <Fragment key={index}>{slide}</Fragment>)}
       </Fragment>
     )
   }
