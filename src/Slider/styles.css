@@ -1,6 +1,7 @@
 .swiper-wrapper {
   overflow: hidden;
   margin: 0 auto;
+  will-change: transform;
 }
 
 .swiped-area {
@@ -14,3 +15,6 @@
   background-color: yellow;
 }
 
+.slide {
+  min-width: 230px;
+}

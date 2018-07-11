@@ -25,3 +25,8 @@ export const getSlideBySlidesOffset = (currentSlide: HTMLDivElement, offsetCount
   }
   return slides[newSlideIndex]
 }
+
+export const joinClasses = (...classes: (string | boolean)[]): string => (
+  classes.filter(item => typeof item === "string" && !!item.trim()).join(" ")
+)
+
