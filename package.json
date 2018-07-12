@@ -1,5 +1,5 @@
 {
-  "name": "JanSlider",
+  "name": "jaslider",
   "version": "1.0.0",
   "dependencies": {
     "react": "^16.3.2",
