@@ -8,7 +8,6 @@ import {
   DEFAULT_SLIDES_PER_VIEW,
   ANIMATION_DURATION_MS,
 } from "./constants"
-import debounce from "lodash/debounce"
 import "./styles.css"
 
 type Props = {
@@ -204,7 +203,7 @@ class Slider extends React.Component<Props, State> {
     }
   }
 
-  updateRenderedSlides = debounce(() => {
+  updateRenderedSlides = () => {
     if (-this.deltaX % this.state.slideWidth === 0 && this.mounted) {
       const swipedSlidesCount = -this.deltaX / this.state.slideWidth
       const currentSlide =
@@ -215,7 +214,7 @@ class Slider extends React.Component<Props, State> {
       this.clearTransformOffset()
       this.setState({ renderedSlides: [currentSlide, ...additionalSlides] })
     }
-  }, ANIMATION_DURATION_MS, { leading: true })
+  }
 
   clearTransformOffset = () => {
     this.deltaX = 0
