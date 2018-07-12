@@ -1,13 +1,11 @@
 {
-  "name": "slider",
-  "version": "0.1.0",
+  "name": "JaSlider",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4",
-    "redux": "^4.0.0",
-    "styled-components": "^3.3.0"
+    "react-scripts": "1.1.4"
   },
   "scripts": {
     "start": "PORT=3006 react-scripts start",
