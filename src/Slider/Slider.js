@@ -14,6 +14,7 @@ type Props = {
   breakpoints: { [string]: number },
   wrapperClassname?: string,
   children: React.Node[],
+  showSwiperButtons: boolean,
 }
 
 type State = {
@@ -231,7 +232,7 @@ class Slider extends React.Component<Props, State> {
     new Date().getTime() - this.transitionStartedAt >= ANIMATION_DURATION_MS
 
   render () {
-    const { wrapperClassname = "" } = this.props
+    const { wrapperClassname = "", showSwiperButtons } = this.props
     const { renderedSlides, slidesPerView } = this.state
     return (
       <div ref={ref => {
@@ -276,16 +277,21 @@ class Slider extends React.Component<Props, State> {
             }
           </div>
         </div>
-        <div
-          className={joinClasses("swiper-button-prev",
-            !this.isSwipingAvailable() && "swiper-button-disabled")}
-          onClick={this.slidePrev}
-        />
-        <div
-          className={joinClasses("swiper-button-next",
-            !this.isSwipingAvailable() && "swiper-button-disabled")}
-          onClick={this.slideNext}
-        />
+        {
+          showSwiperButtons &&
+          <React.Fragment>
+            <div
+              className={joinClasses("swiper-button-prev",
+                !this.isSwipingAvailable() && "swiper-button-disabled")}
+              onClick={this.slidePrev}
+            />
+            <div
+              className={joinClasses("swiper-button-next",
+                !this.isSwipingAvailable() && "swiper-button-disabled")}
+              onClick={this.slideNext}
+            />
+          </React.Fragment>
+        }
       </div>
     )
   }
