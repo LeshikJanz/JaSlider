@@ -1,8 +1,17 @@
 import React from "react";
+import styled from "styled-components";
 import logo from "./logo.svg";
 import "./App.css";
 import Slider from "./Slider/Slider";
 import { SLIDES_RESOLUTIONS } from "./Slider/constants";
+
+const Slide = styled.div`
+  position: relative;
+  ${({ disabled }) => disabled && "pointer-events: none;"};
+  transform: rotate(${({ index }) => 15 * index}deg);
+  top: ${({ index }) => index * 50}px;
+  right: ${({ index }) => index * 30}px;
+`;
 
 function App() {
   const images = new Array(50)
@@ -10,20 +19,13 @@ function App() {
     .map((img, index) => `https://picsum.photos/200/300?image=${110 + index}`);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1 className="App-title">Welcome to React</h1>
-      </header>
       <div className="wrapper">
         <Slider breakpoints={SLIDES_RESOLUTIONS} showSwiperButtons>
-          {images.map(img => (
+          {images.map((img, index) => (
             <div key={img} className="slide">
-              
-              <img
-                draggable={false}
-                src={img}
-                alt=""
-              />
+              <Slide index={index}>
+                <img draggable={false} src={img} alt="" />
+              </Slide>
             </div>
           ))}
         </Slider>
