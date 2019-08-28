@@ -5,7 +5,10 @@
 }
 
 .swiped-area {
+  position: relative;
   height: 100%;
+  top: 400px;
+  left: 400px;
   display: flex;
 }
 
@@ -16,9 +19,23 @@
 }
 
 .slide {
-  min-width: 130px;
+  min-width: 30px;
 }
 
 .slide img {
-  height: 100px;
+  height: 80px;
+}
+
+@keyframes Orbita2 {
+  from { transform: rotate(180deg) translateX(150px) rotate(180deg); }
+  to   { transform: rotate(540deg) translateX(150px) rotate(540deg); }
+}
+
+.orbit2 {
+  animation: Orbita2 15s linear infinite;
+}
+
+.moveButton {
+  position: fixed;
+  bottom: 0;
 }
