@@ -1,5 +1,5 @@
 .swiper-wrapper {
-  overflow: hidden;
+  /* overflow: hidden; */
   margin: 0 auto;
   will-change: transform;
 }
@@ -16,5 +16,9 @@
 }
 
 .slide {
-  min-width: 230px;
+  min-width: 130px;
+}
+
+.slide img {
+  height: 100px;
 }
