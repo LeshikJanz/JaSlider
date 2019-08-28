@@ -14,13 +14,50 @@ const Slide = styled.div`
     index >= 10 ? 60 * (index - 9) : 50 * index - 420}px;
 `;
 
+let mouseDown = false;
+let currentMousePosition = [0, 0];
+
 class App extends React.Component {
   state = {
     degree: 0
   };
 
-  handleClick = () => {
-    this.setState(prevState => ({ degree: prevState.degree + 2 }));
+  slides;
+
+  componentDidMount() {
+    this.slides = document.querySelectorAll(".slide");
+    console.log("this.slides", this.slides);
+    let count = 0;
+    setInterval(() => {
+      count += 1;
+      this.slides.forEach(
+        (slide, index) =>
+          (slide.style.transform = `rotate(${180 +
+            index * 20 +
+            0.5 * count}deg) translateX(360px) rotate(${180 +
+            index * 20 +
+            10}deg)`)
+      );
+    }, 50);
+  }
+
+  handleMouseDown = () => {
+    mouseDown = true;
+  };
+
+  handleMouseUp = () => {
+    mouseDown = false;
+  };
+
+  onMove = e => {
+    const delta = 
+    console.log("e.pageX", e.pageX);
+  };
+
+  moveSlides = movingDelta => {
+    this.setState(prevState => ({
+      degree: prevState.degree + movingDelta / 10
+    }));
   };
 
   render() {
@@ -31,15 +68,25 @@ class App extends React.Component {
       );
     return (
       <div className="App">
-        <div className="wrapper">
+        <div
+          id="wrapper"
+          className="wrapper"
+          onMouseDown={this.onMouseDown}
+          onMouseUp={this.onMouseUp}
+          onMouseMove={this.onMove}
+        >
           <div className="swiper-wrapper">
             <div className="swiped-area disable-user-select">
               {images.map((img, index) => (
-                <div key={img} className="slide" name={index}>
-                  <Slide index={index} degree={this.state.degree}>
-                    <img draggable={false} src={img} alt="" />
-                  </Slide>
-                </div>
+                <Slide
+                  key={img}
+                  name={index}
+                  className="slide"
+                  index={index}
+                  degree={this.state.degree}
+                >
+                  <img draggable={false} src={img} alt="" />
+                </Slide>
               ))}
             </div>
           </div>
