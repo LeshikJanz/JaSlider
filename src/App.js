@@ -9,8 +9,8 @@ const Slide = styled.div`
   position: relative;
   ${({ disabled }) => disabled && "pointer-events: none;"};
   transform: rotate(${({ index }) => 15 * index}deg);
-  top: ${({ index }) => index * 50}px;
-  right: ${({ index }) => index * 30}px;
+  top: ${({ index }) => index * 50 - (index > 10 ? (80 * (index - 10)) : 0)}px;
+  right: ${({ index }) => index * 60 + (index > 10 ? (130 * (index - 10)) : 0)}px;
 `;
 
 function App() {
