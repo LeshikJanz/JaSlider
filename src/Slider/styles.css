@@ -5,6 +5,7 @@
 }
 
 .swiped-area {
+  position: relative;
   height: 100%;
   display: flex;
 }
@@ -16,9 +17,9 @@
 }
 
 .slide {
-  min-width: 130px;
+  min-width: 70px;
 }
 
 .slide img {
-  height: 100px;
+  height: 60px;
 }
